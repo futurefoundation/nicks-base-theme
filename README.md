@@ -13,7 +13,8 @@ The /less directory thats been setup, provides a super clean and convienient way
 This also makes for quick theming. Inside the /less directory of this child theme you'll find `variables.less`. With this file you can easily change for example, the font size and line-height across the entire site without overriding. You can also list custom variables here to use across your child theme, and its sections. Mixins work in the same way. Copy `mixins.less` from the `pagelines/less`, paste it into the child themes /less directory, and add a csutom mixin. Now you can use that anywhere across your site. Any available LESS file in the parent can be pasted into the child. Variables is just one of them.
 
 You'll also find the the style.less from out renamed `Altered Nav` section is missing. It's styles have been brought into the child theme `style.less` file. This is personal preference, and is the way I usually will build a child theme. I only use mixins and variables if I need to echo those styles into the sections. Otherwise I'll leave them in the childs `style.less` file.
-LESS Directory
+
+Sections Directory
 ======
 
 Your child themes sections go here. You can copy any of the parent theme sections, and paste them into here if you plan on changing or adding onto core sections. I reccommend changing the class name and deactivating the core section that you've cloned. Deactivating will ensure that sections LESS file doesn't get compiled. I've changed it  to `Altered Nav` as an example in the section provided.
