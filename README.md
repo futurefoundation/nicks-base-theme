@@ -19,3 +19,14 @@ Sections Directory
 
 Your child themes sections go here. You can copy any of the parent theme sections, and paste them into here if you plan on changing or adding onto core sections. I reccommend changing the class name and deactivating the core section that you've cloned. Deactivating will ensure that sections LESS file doesn't get compiled. I've changed it  to `Altered Nav` as an example in the section provided.
 
+Changelog
+======
+
+== 1.0.1 == 
+* Added sample color picker running custom LESS var
+* Added sample options panel
+* Updated variables.less to sync with PageLines 2.4
+
+== 1.0 == 
+* Initial Release
+
