@@ -1,9 +1,9 @@
 <?php
 
-// Load Framework - don't delete this shit
+// Load Framework - don't delete this
 require_once( dirname(__FILE__) . '/setup.php' );
 
-// Load our shit in a class cause it's awesome
+// Load our shit in a class cause we're awesome
 class YourTheme {
 
 	function __construct() {
@@ -23,9 +23,11 @@ class YourTheme {
 		// Run the theme options
 		$this->theme_options();
 
+		// Send the user to the Theme Config panel after they activate.
 		add_filter('pl_activate_url', array(&$this,'activation_url'));
 	}
 
+	// Send the user to the Theme Config panel after they activate. Note how link=nb_theme_config is the same name of the array settings. This must match.
 	function activation_url( $url ){
 
 	    $url = home_url() . '?tablink=theme&tabsublink=nb_theme_config';
@@ -36,6 +38,8 @@ class YourTheme {
 	function custom_less_vars($less){
 
 		// Adding a custom LESS var, use this in LESS as @my-var. In this example, its linked to a custom color picker in options. We also must set a default or else it's going to error.
+		// pl_hashify must be used with color pickers so that it appends the # symbol to the hex code
+		// pl_setting is being used because this is a global option used in the theme
 		$less['my-var']   =  pl_setting('my_custom_color') ? pl_hashify(pl_setting('my_custom_color')) : '#07C';
 
 		return $less;
@@ -46,7 +50,7 @@ class YourTheme {
 
 		ob_start();
 
-		?><div style="font-size:12px;line-height:14px;color:#444;"><p><?php _e('You can have some custom text here.','nb-section');?></p></div><?php
+		?><div style="font-size:12px;line-height:14px;color:#444;"><p><?php _e('You can have some custom text here.','nicks-base-theme');?></p></div><?php
 
 		return ob_get_clean();
 	}
@@ -54,17 +58,17 @@ class YourTheme {
 	// Theme Options
 	function theme_options(){
 
-		$theme_settings = array();
+		$options = array();
 
-		$theme_settings['nb_theme_config'] = array(
+		$options['nb_theme_config'] = array(
 		   'pos'                  => 50,
 		   'name'                 => __('Nicks Base Theme','nicks-base-theme'),
 		   'icon'                 => 'rocket',
 		   'opts'                 => array(
 		   		array(
-		       	    'type'          => 'template',
-            		'title'         => __('Welcome to Flyte Theme','nicks-base-theme'),
-            		'template'      => $this->welcome()
+		       	    'type'        => 'template',
+            		'title'       => __('Welcome to My Theme','nicks-base-theme'),
+            		'template'    => $this->welcome()
 		       	),
 		       	array(
 		           'type'         => 'color',
@@ -75,7 +79,7 @@ class YourTheme {
 		       	),
 		   )
 		);
-		pl_add_theme_tab($theme_settings);
+		pl_add_theme_tab($options);
 	}
 
 }
