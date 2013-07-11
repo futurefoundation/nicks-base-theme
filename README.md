@@ -1,6 +1,8 @@
 Nicks-Base-Theme
 ===========
 
+Updated for DMS!
+
 A LESS driven child theme template for PageLines. This is what I use to start each new theme with, and is currently how I reccommend to build Child Themes for PageLines. PageLines has its own PHP LESS compiler which compiles the LESS into CSS on the fly. This means all you need to worry about when theming is pecking out some LESS.
 
 If you're working locally (which you should be), you can turn off the caching by adding `define('PL_LESS_DEV',true);` to your wp-config file. This prevents you from having to Save Options in order to re-build and re-cache the LESS. Do not run this on a production site, or face a nuclear meltdown.
@@ -21,6 +23,9 @@ Your child themes sections go here. You can copy any of the parent theme section
 
 Changelog
 ======
+
+== 1.1 ==
+* Updated for DMS
 
 == 1.0.1 == 
 * Added sample color picker running custom LESS var
