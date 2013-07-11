@@ -15,47 +15,67 @@ class YourTheme {
 		// Add a filter so we can build a few custom LESS vars
 		add_filter( 'pless_vars', array(&$this,'custom_less_vars'));
 
+		$this->init();
+	}
+
+	function init(){
+
 		// Run the theme options
 		$this->theme_options();
+
+		add_filter('pl_activate_url', array(&$this,'activation_url'));
+	}
+
+	function activation_url( $url ){
+
+	    $url = home_url() . '?tablink=theme&tabsublink=nb_theme_config';
+	    return $url;
 	}
 
 	// Custom LESS Vars
 	function custom_less_vars($less){
 
 		// Adding a custom LESS var, use this in LESS as @my-var. In this example, its linked to a custom color picker in options. We also must set a default or else it's going to error.
-		$less['my-var']   =  ploption('my_custom_color') ? ploption('my_custom_color') : '#07C';
+		$less['my-var']   =  pl_setting('my_custom_color') ? pl_hashify(pl_setting('my_custom_color')) : '#07C';
 
 		return $less;
 	}
 
-	// Build options panel
-	function theme_options(){
-		
-		$opt_array = array(
-			'nb_custom_colors' => array(
-				'title'		=> 'Sample Color Picker',
-				'layout'	=> 'layout',
-				'shortexp'	=> 'A simple color picker',
-				'type'		=> 'color_multi',
-				'selectvalues'	=> array(
-					'my_custom_color'	=> array(
-						'default'		=> '',
-						'css_prop'		=> 'color',
-						'selectors'		=> '.whatever',
-						'inputlabel'	=> 'Some Selector',
-					),
-				),
-				'exp' => 'Here\'s a color picker running a custom LESS variable.',
-			),
-		);
-			
-		$tab_settings = array(
-			'name'		=> 'Nicks_Base_Theme',
-			'array'		=> $opt_array,
-			'icon'		=> CHILD_URL.'/icon.png'
-		);
+    // WELCOME MESSAGE - HTML content for the welcome/intro option field
+	function welcome(){
 
-		pl_add_options_page( $tab_settings);
+		ob_start();
+
+		?><div style="font-size:12px;line-height:14px;color:#444;"><p><?php _e('You can have some custom text here.','nb-section');?></p></div><?php
+
+		return ob_get_clean();
+	}
+
+	// Theme Options
+	function theme_options(){
+
+		$theme_settings = array();
+
+		$theme_settings['nb_theme_config'] = array(
+		   'pos'                  => 50,
+		   'name'                 => __('Nicks Base Theme','nicks-base-theme'),
+		   'icon'                 => 'rocket',
+		   'opts'                 => array(
+		   		array(
+		       	    'type'          => 'template',
+            		'title'         => __('Welcome to Flyte Theme','nicks-base-theme'),
+            		'template'      => $this->welcome()
+		       	),
+		       	array(
+		           'type'         => 'color',
+		           'title'        => __('Sample Color','nicks-base-theme'),
+		           'key'          => 'my_custom_color',
+		           'label'        => __('Sample Color','nicks-base-theme'),
+		           'default'      =>'#FFFFFF'
+		       	),
+		   )
+		);
+		pl_add_theme_tab($theme_settings);
 	}
 
 }
