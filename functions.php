@@ -63,7 +63,7 @@ class YourTheme {
 		$options['nb_theme_config'] = array(
 		   'pos'                  => 50,
 		   'name'                 => __('Nicks Base Theme','nicks-base-theme'),
-		   'icon'                 => 'rocket',
+		   'icon'                 => 'icon-rocket',
 		   'opts'                 => array(
 		   		array(
 		       	    'type'        => 'template',
