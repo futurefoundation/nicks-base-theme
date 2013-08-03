@@ -24,6 +24,9 @@ Your child themes sections go here. You can copy any of the parent theme section
 Changelog
 ======
 
+== 1.2 ==
+* updated variables.less to match (caused issues with revslider props batman)
+
 == 1.1 ==
 * Updated for DMS
 
